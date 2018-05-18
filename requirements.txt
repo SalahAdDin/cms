@@ -1,0 +1,49 @@
+# support - develop
+django-debug-toolbar
+django-extensions
+# django-maintenance-mode
+django-naomi
+django-silk
+ipython
+
+# support - app
+celery[redis]
+django-webpack-loader
+elasticsearch
+gunicorn
+psycopg2
+# wand # Only for website that require GIF
+
+#support - log
+raven
+# python-logstash-async
+# python-json-logger
+
+# support - cache
+# django-cachalot # Only for big project, see documentation
+django-redis
+
+# wagtail
+wagtail
+django-wagtail-feeds
+wagtail-condensedinlinepanel
+# wagtailcodeblock	# Only for developer's sites
+git+https://github.com/SalahAdDin/wagtail-embedvideos@0.5.0
+wagtailgeowidget
+wagtailmenus
+wagtail-metadata
+wagtailstreamforms
+
+# seo
+django-axes
+# django-celery-beat
+# django-celery-results
+# django-disqus # Only if page require comments
+# django-robots
+git+https://github.com/jazzband/django-robots@3.1.0
+# wagalytics
+
+# static - server
+boto
+# django-anymail
+django-storages

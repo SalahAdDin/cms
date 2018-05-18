@@ -1,0 +1,41 @@
+# File types
+*.db
+*.pyc
+*.swo
+*.swp
+*.swn
+*.log
+*.mo
+*.sql
+*.sqlite3
+
+# OS files
+.DS_Store
+ehthumbs.db
+Icon?
+Thumbs.db
+*~
+
+# Configuration files
+/cms/secret.txt
+/cms/settings/dev.py
+.idea
+.tags
+.tags_sorted_by_file
+
+# Folders
+.sass-cache
+# cms/static
+
+/node_modules
+/cms/static/node_modules/
+
+/bower_components
+/static
+/reports
+/uploads
+/media/
+/jquery-webpack-stats.json
+/cms/static/jquery-webpack-stats.json
+/cms/static/webpack-stats.json
+/cms/static/package-lock.json

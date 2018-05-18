@@ -1,0 +1,126 @@
+from .base import *
+
+# SECURITY WARNING: don't run with debug turned on in production!
+
+DEBUG = True
+
+for template_engine in TEMPLATES:
+    template_engine['OPTIONS']['debug'] = True
+
+# SECURITY WARNING: define the correct hosts in production!
+
+# ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '.ngrok.io']
+
+INTERNAL_IPS = ['::1', '127.0.0.1']
+
+# Application definition
+INSTALLED_APPS += [
+    'wagtail.contrib.styleguide',
+    'debug_toolbar',
+    'naomi',
+]
+
+# Database
+# https://docs.djangoproject.com/en/2.0/ref/settings/#databases
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'cms',
+        'USER': 'salahaddin',
+        'PASSWORD': 'Feyza2015',
+        'HOST': 'localhost',
+        'PORT': '',
+        # 'CONN_MAX_AGE': 600,
+    }
+}
+
+# Internationalization
+# https://docs.djangoproject.com/en/2.0/topics/i18n/
+
+LANGUAGE_CODE = 'es-CO'
+
+# Cache
+# https://docs.djangoproject.com/en/2.0/topics/cache/
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+    }
+    'axes_cache': {
+        'BACKEND': 'django.core.cache.backends.dummy.DummyCache'
+    }
+}
+CACHE_MIDDLEWARE_SECONDS = 10
+
+# Email backend
+# https://docs.djangoproject.com/en/2.0/topics/email/#email-backends
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/2.0/howto/static-files/
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Axes
+AXES_CACHE = 'axes_cache'
+
+# Celery
+# CELERY_EAGER_PROPAGATES_EXCEPTIONS = True
+# CELERY_TASK_ALWAYS_EAGER = True
+
+# Debug toolbar
+DEBUG_TOOLBAR_PANELS = [
+    'debug_toolbar.panels.versions.VersionsPanel',
+    'debug_toolbar.panels.timer.TimerPanel',
+    'debug_toolbar.panels.settings.SettingsPanel',
+    'debug_toolbar.panels.headers.HeadersPanel',
+    'debug_toolbar.panels.request.RequestPanel',
+    'debug_toolbar.panels.sql.SQLPanel',
+    'debug_toolbar.panels.staticfiles.StaticFilesPanel',
+    'debug_toolbar.panels.templates.TemplatesPanel',
+    'debug_toolbar.panels.cache.CachePanel',
+    'debug_toolbar.panels.signals.SignalsPanel',
+    'debug_toolbar.panels.logging.LoggingPanel',
+    'debug_toolbar.panels.redirects.RedirectsPanel',
+]
+
+# Google maps
+GOOGLE_MAPS_V3_APIKEY = 'AIzaSyAVKOSTgqA8vY3w_ao61tPEYJ2qvhd4qFk'
+GOOGLE_MAPS_V3_LANGUAGE = 'es'
+GEO_WIDGET_ZOOM = 14
+
+# Analytics stuff
+GOOGLE_TAG_MANAGER = False
+GOOGLE_ANALYTICS_KEY = False
+
+# Naomi
+EMAIL_BACKEND = 'naomi.mail.backends.naomi.NaomiBackend'
+EMAIL_FILE_PATH = os.path.join(MEDIA_ROOT, 'tmp_email')
+
+# Robots
+ROBOTS_SITEMAP_URLS = [
+    'http://localhost/sitemap.xml',
+]
+
+# Wagtail
+
+# Searching
+# http://docs.wagtail.io/en/latest/topics/search/backends.html#wagtailsearch-backends
+WAGTAILSEARCH_BACKENDS = {
+    'default': {
+        'BACKEND': 'wagtail.search.backends.elasticsearch6',
+        'URLS': ['http://localhost:9200'],
+        'INDEX': 'cms',
+        'ATOMIC_REBUILD': True,
+        'TIMEOUT': 5,
+        'OPTIONS': {},
+        'INDEX_SETTINGS': {},
+    }
+}
+
+
+try:
+    from .local import *
+except ImportError:
+    pass

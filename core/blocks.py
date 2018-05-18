@@ -1,6 +1,7 @@
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 
+from wagtail.contrib.table_block.blocks import TableBlock
 from wagtail.core.blocks import (
     FieldBlock,
     StructBlock,
@@ -13,6 +14,7 @@ from wagtail.embeds.blocks import EmbedBlock
 from wagtail.images.blocks import ImageChooserBlock
 
 from wagtail_embed_videos.blocks import EmbedVideoChooserBlock
+from wagtailblocks_cards.blocks import CardsBlock
 from wagtailgeowidget.blocks import GeoBlock
 
 """
@@ -28,6 +30,20 @@ alignment_choices = [
     ('half', _('Half width')),
     ('full', _('Full width')),
 ]
+
+new_table_options = {
+    'minSpareRows': 2,
+    'startRows': 6,
+    'startCols': 4,
+    'colHeaders': True,
+    'rowHeaders': True,
+    'contextMenu': True,
+    'editor': 'text',
+    'stretchH': 'all',
+    'height': 216,
+    'renderer': 'text',
+    'autoColumnSize': True,
+}
 
 
 class ImageFormatChoiceBlock(FieldBlock):
@@ -86,6 +102,11 @@ class GMapBlock(StructBlock):
         template = 'blocks/address.html'
 
 
+class InfoBlock(StructBlock):
+    header = CharBlock(label=_('Header'))
+    text = RichTextBlock(label=_('Text info'))
+
+
 class StoryBlock(StreamBlock):
     h2 = CharBlock(icon="title", classname="title")
     h3 = CharBlock(icon="title", classname="title")
@@ -99,3 +120,5 @@ class StoryBlock(StreamBlock):
     raw_html = RawHTMLBlock(label=_('Raw HTML'), icon="code")
     embed = EmbedBlock(icon="code", label=_('Embed'))
     address = GMapBlock(label=_('Address'))
+    table = TableBlock(label=_('Table'), table_options=new_table_options)
+    info = CardsBlock(InfoBlock(label=_('Card info')))  # TODO: add label and icon

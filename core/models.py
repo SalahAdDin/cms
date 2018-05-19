@@ -14,6 +14,8 @@ from wagtail.images.models import (
     Image
 )
 
+from .snippets import Advert
+
 
 class CMSImage(AbstractImage):
     """

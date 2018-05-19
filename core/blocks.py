@@ -5,6 +5,7 @@ from wagtail.core.blocks import (
     CharBlock,
     ChoiceBlock,
     FieldBlock,
+    ListBlock,
     RawHTMLBlock,
     RichTextBlock,
     StreamBlock,
@@ -104,6 +105,13 @@ class HeadingBlock(StructBlock):
         template = "blocks/heading_block.html"
 
 
+class PhotoGridBlock(StructBlock):
+    images = ListBlock(ImageChooserBlock())
+
+    class Meta:
+        icon = "grip"
+
+
 class StoryBlock(StreamBlock):
     header = HeadingBlock(classname="title")
     intro = RichTextBlock(icon="pilcrow", label=_('Intro'))
@@ -115,3 +123,4 @@ class StoryBlock(StreamBlock):
     raw_html = RawHTMLBlock(label=_('Raw HTML'), icon="code")
     embed = EmbedBlock(icon="code", label=_('Embed'))
     address = GMapBlock(label=_('Address'))
+    photo_grid = PhotoGridBlock(label=_('Photo Grid'))

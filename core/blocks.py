@@ -3,12 +3,13 @@ from django.utils.translation import ugettext_lazy as _
 
 from wagtail.contrib.table_block.blocks import TableBlock
 from wagtail.core.blocks import (
-    FieldBlock,
-    StructBlock,
     CharBlock,
-    RichTextBlock,
+    ChoiceBlock,
+    FieldBlock,
     RawHTMLBlock,
-    StreamBlock
+    RichTextBlock,
+    StreamBlock,
+    StructBlock
 )
 from wagtail.embeds.blocks import EmbedBlock
 from wagtail.images.blocks import ImageChooserBlock
@@ -102,15 +103,30 @@ class GMapBlock(StructBlock):
         template = 'blocks/address.html'
 
 
+class HeadingBlock(StructBlock):
+    """
+    Custom `StructBlock` that allows the user to select h2 - h4 sizes for headers
+    """
+    heading_text = CharBlock(classname="title", required=True)
+    size = ChoiceBlock(choices=[
+        ('', _('Select a header size')),
+        ('h2', 'H2'),
+        ('h3', 'H3'),
+        ('h4', 'H4')
+    ], blank=True, required=False)
+
+    class Meta:
+        icon = "title"
+        template = "blocks/heading_block.html"
+
+
 class InfoBlock(StructBlock):
     header = CharBlock(label=_('Header'))
     text = RichTextBlock(label=_('Text info'))
 
 
 class StoryBlock(StreamBlock):
-    h2 = CharBlock(icon="title", classname="title")
-    h3 = CharBlock(icon="title", classname="title")
-    h4 = CharBlock(icon="title", classname="title")
+    header = HeadingBlock(classname="title")
     intro = RichTextBlock(icon="pilcrow", label=_('Intro'))
     paragraph = RichTextBlock(icon="pilcrow", label=_('Paragraph'))
     aligned_image = ImageBlock(label=_('Aligned image'))

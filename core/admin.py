@@ -1,9 +1,18 @@
 from django.contrib import admin
 
-from .models import GlobalSettings
-from .models import CMSImage
-from .models import CMSRendition
+from .models import (
+    CMSImage,
+    CMSRendition,
+    GlobalSettings
+)
 
-admin.site.register(GlobalSettings)
+from .snippets import (
+    Advert,
+    AdvertPlacement
+)
+
+admin.site.register(Advert)
+admin.site.register(AdvertPlacement)
 admin.site.register(CMSImage)
 admin.site.register(CMSRendition)
+admin.site.register(GlobalSettings)

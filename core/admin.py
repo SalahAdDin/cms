@@ -11,7 +11,6 @@ from .snippets import (
     AdvertPlacement
 )
 
-
 admin.site.register(Advert)
 admin.site.register(AdvertPlacement)
 admin.site.register(CMSImage)

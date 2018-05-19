@@ -126,6 +126,8 @@ class PhotoGridBlock(StructBlock):
 
     class Meta:
         icon = "grip"
+
+
 class InfoBlock(StructBlock):
     header = CharBlock(label=_('Header'))
     text = RichTextBlock(label=_('Text info'))

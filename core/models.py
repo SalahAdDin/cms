@@ -3,9 +3,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from wagtail.admin.edit_handlers import (
     FieldPanel,
-    MultiFieldPanel,
     ObjectList,
-    PageChooserPanel,
     TabbedInterface
 )
 from wagtail.contrib.settings.models import BaseSetting

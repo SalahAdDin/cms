@@ -2,6 +2,12 @@
 from django.db import migrations
 
 
+def change_django_site(apps, schema_editor):
+    DjangoSite = apps.get_model('sites', 'Site')
+
+    DjangoSite.objects.get_or_create(id=1, domain='www.rotafilo.com.tr', name='Rotafilo')
+
+
 def create_homepage(apps, schema_editor):
     # Get models
     ContentType = apps.get_model('contenttypes.ContentType')
@@ -31,7 +37,8 @@ def create_homepage(apps, schema_editor):
 
     # Create a site with the new homepage set as the root
     Site.objects.create(
-        hostname='localhost', root_page=homepage, is_default_site=True)
+        hostname='www.rotafilo.com.tr', site_name='Rotafilo', root_page=homepage, is_default_site=True
+    )
 
 
 def remove_homepage(apps, schema_editor):
@@ -48,11 +55,12 @@ def remove_homepage(apps, schema_editor):
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('home', '0001_initial'),
+        ('sites', '0002_alter_domain_unique'),
     ]
 
     operations = [
+        migrations.RunPython(change_django_site, reverse_code=migrations.RunPython.noop),
         migrations.RunPython(create_homepage, remove_homepage),
     ]

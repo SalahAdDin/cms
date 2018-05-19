@@ -4,7 +4,6 @@ from modelcluster.fields import ParentalKey
 
 from wagtail.admin.edit_handlers import (
     FieldPanel,
-    InlinePanel
 )
 from wagtail.core.models import (
     Page,
@@ -37,7 +36,7 @@ class HomePageRelatedLink(Orderable, RelatedLink):
 
 
 class HomePageClient(Orderable, RelatedLink):
-    page = ParentalKey('core.HomePage', related_name='clients')
+    page = ParentalKey('home.HomePage', related_name='clients')
     image = models.ForeignKey(
         'core.CMSImage',
         null=True,
@@ -53,9 +52,7 @@ class HomePageClient(Orderable, RelatedLink):
 
 
 class HomePage(Page):
-    clients_title = models.TextField(blank=True)
-
-    # products_title = models.TextField(blank=True)
+    clients_title = models.TextField(blank=True, verbose_name="Clients section's title")
 
     def __str__(self):
         return self.title
@@ -66,7 +63,7 @@ class HomePage(Page):
     content_panels = [
         FieldPanel('title', classname="full title"),
         CondensedInlinePanel('carousel_items', label=_("Carousel's items")),
-        FieldPanel('clients_title', label="Clients section's title"),
-        InlinePanel('clients', label="Clients"),
-        CondensedInlinePanel('related_links', label=_('Related links')),
+        FieldPanel('clients_title'),
+        CondensedInlinePanel('clients', label=_("Clients"), card_header_from_field="title"),
+        CondensedInlinePanel('related_links', label=_('Related links'), card_header_from_field="title"),
     ]

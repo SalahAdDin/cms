@@ -126,6 +126,7 @@ class PhotoGridBlock(StructBlock):
 
     class Meta:
         icon = "grip"
+        template = "blocks/photo_grid_block.html"
 
 
 class InfoBlock(StructBlock):

@@ -3,12 +3,14 @@ from django.utils.translation import ugettext_lazy as _
 
 from modelcluster.fields import ParentalKey
 from wagtail.admin.edit_handlers import (
+    FieldPanel,
     InlinePanel,
-    FieldPanel
+    MultiFieldPanel
 )
 from wagtail.core.fields import RichTextField
 from wagtail.core.models import Page, Orderable
 from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtailgeowidget.edit_handlers import GeoPanel
 
 from core.abstracts import RelatedLink
 
@@ -21,11 +23,15 @@ class AboutPageOffice(Orderable):
     page = ParentalKey('about.AboutPage', related_name='offices')
     title = models.TextField(_('Title'))
     svg = models.TextField(_('SVG icon'), null=True)
-    description = models.TextField(_('Description'))
+    address = models.CharField(_('Address'), help_text=_("Location's address"), max_length=250)
+    map = models.CharField(_('Map'), null=True, max_length=250)
 
     panels = [
         FieldPanel('title'),
-        FieldPanel('description'),
+        MultiFieldPanel([
+            FieldPanel('address'),
+            GeoPanel('map', address_field='address'),
+        ], _('Location details')),
         FieldPanel('svg')
     ]
 

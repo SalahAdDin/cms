@@ -54,7 +54,7 @@ class AboutPageContentBlock(Orderable):
 
 class AboutPage(Page):
     main_image = models.ForeignKey(
-        'cms.CMSImage',
+        'core.CMSImage',
         null=True,
         blank=True,
         on_delete=models.SET_NULL,

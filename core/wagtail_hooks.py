@@ -34,11 +34,48 @@ def register_strikethrough_feature(features):
 
     control = {
         'type': type_,
-        # 'label': 'S',
+        'label': 'S',
+        # TODO
         # 'icon': 'icon icon-fa-strikethrough',
         # 'icon': ['M100 100 H 900 V 900 H 100 Z'],
         'description': ugettext('Strikethrough'),
         # This isn’t even required – Draftail has predefined styles for STRIKETHROUGH.
+        # 'style': {'textDecoration': 'line-through'},
+    }
+
+    # features.default_features.append(feature_name)
+
+    features.register_editor_plugin(
+        'draftail', feature_name, draftail_features.InlineStyleFeature(control)
+    )
+
+    db_conversion = {
+        'from_database_format': {tag: InlineStyleElementHandler(type_)},
+        'to_database_format': {'style_map': {type_: tag}},
+    }
+
+    features.register_converter_rule('contentstate', feature_name, db_conversion)
+
+    features.register_converter_rule('editorhtml', feature_name, [
+        WhitelistRule(feature_name, allow_without_attributes),
+    ])
+
+
+@hooks.register('register_rich_text_features')
+def register_quotation_feature(features):
+    """
+    Registering the `quotation` feature, which uses the `QUOTATION` Draft.js inline style type,
+    and is stored as HTML with an `<q>` tag.
+    """
+    feature_name = 'quotation'
+    type_ = 'QUOTATION'
+    tag = 'q'
+
+    control = {
+        'type': type_,
+        'label': '❞',
+        'description': ugettext('Quotation'),
+        # This isn’t even required – Draftail has predefined styles for QUOTATION.
         # 'style': {'textDecoration': 'line-through'},
     }
 
@@ -88,6 +125,119 @@ def register_blockquote_feature(features):
         'from_database_format': {tag: BlockElementHandler(type_)},
         'to_database_format': {'block_map': {type_: tag}},
     })
+
+    features.register_converter_rule('editorhtml', feature_name, [
+        WhitelistRule(feature_name, allow_without_attributes),
+    ])
+
+
+@hooks.register('register_rich_text_features')
+def register_underline_feature(features):
+    """
+    Registering the `underline` feature, which uses the `UNDERLINE` Draft.js inline style type,
+    and is stored as HTML with an `<u>` tag.
+    """
+    feature_name = 'underline'
+    type_ = 'UNDERLINE'
+    tag = 'u'
+
+    control = {
+        'type': type_,
+        'label': 'U',
+        # TODO
+        # 'icon': 'icon icon-fa-underline',
+        # 'icon': ['M100 100 H 900 V 900 H 100 Z'],
+        'description': ugettext('Underline'),
+        # This isn’t even required – Draftail has predefined styles for UNDERLINE.
+        # 'style': {'textDecoration': 'line-through'},
+    }
+
+    # features.default_features.append(feature_name)
+
+    features.register_editor_plugin(
+        'draftail', feature_name, draftail_features.InlineStyleFeature(control)
+    )
+
+    db_conversion = {
+        'from_database_format': {tag: InlineStyleElementHandler(type_)},
+        'to_database_format': {'style_map': {type_: tag}},
+    }
+
+    features.register_converter_rule('contentstate', feature_name, db_conversion)
+
+    features.register_converter_rule('editorhtml', feature_name, [
+        WhitelistRule(feature_name, allow_without_attributes),
+    ])
+
+
+@hooks.register('register_rich_text_features')
+def register_mark_feature(features):
+    """
+    Registering the `mark` feature, which uses the `MARK` Draft.js inline style type,
+    and is stored as HTML with an `<mark>` tag.
+    """
+    feature_name = 'mark'
+    type_ = 'MARK'
+    tag = 'mark'
+
+    control = {
+        'type': type_,
+        # 'label': 'H',
+        'icon': 'icon icon-pick',
+        # 'icon': ['M100 100 H 900 V 900 H 100 Z'],
+        'description': ugettext('Highlight'),
+        # This isn’t even required – Draftail has predefined styles for MARK.
+        # 'style': {'textDecoration': 'line-through'},
+    }
+
+    # features.default_features.append(feature_name)
+
+    features.register_editor_plugin(
+        'draftail', feature_name, draftail_features.InlineStyleFeature(control)
+    )
+
+    db_conversion = {
+        'from_database_format': {tag: InlineStyleElementHandler(type_)},
+        'to_database_format': {'style_map': {type_: tag}},
+    }
+
+    features.register_converter_rule('contentstate', feature_name, db_conversion)
+
+    features.register_converter_rule('editorhtml', feature_name, [
+        WhitelistRule(feature_name, allow_without_attributes),
+    ])
+
+
+@hooks.register('register_rich_text_features')
+def register_keyboard_feature(features):
+    """
+    Registering the `mark` feature, which uses the `KEYBOARD` Draft.js inline style type,
+    and is stored as HTML with an `<mark>` tag.
+    """
+    feature_name = 'keyboard'
+    type_ = 'KEYBOARD'
+    tag = 'kbd'
+
+    control = {
+        'type': type_,
+        'label': '⌘',
+        'description': ugettext('Keyboard'),
+        # This isn’t even required – Draftail has predefined styles for KEYBOARD.
+        # 'style': {'textDecoration': 'line-through'},
+    }
+
+    # features.default_features.append(feature_name)
+
+    features.register_editor_plugin(
+        'draftail', feature_name, draftail_features.InlineStyleFeature(control)
+    )
+
+    db_conversion = {
+        'from_database_format': {tag: InlineStyleElementHandler(type_)},
+        'to_database_format': {'style_map': {type_: tag}},
+    }
+
+    features.register_converter_rule('contentstate', feature_name, db_conversion)
 
     features.register_converter_rule('editorhtml', feature_name, [
         WhitelistRule(feature_name, allow_without_attributes),

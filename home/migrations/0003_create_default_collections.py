@@ -15,7 +15,17 @@ def create_collections(apps, schema_editor):
         'logos',
         'landing page',
         'profile photos',
-        'feed images'
+        'feed images',
+        'products',
+        'engine',
+        'maintenance',
+        'ground support',
+        'aviation',
+        'cases',
+        'cabin interior',
+        'brochure',
+        'services',
+        'design'
     ]
 
     # Get collection's root

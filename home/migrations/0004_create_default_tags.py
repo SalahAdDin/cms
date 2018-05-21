@@ -10,7 +10,21 @@ def create_tags(apps, schema_editor):
         'content',
         'services',
         'works',
-        'news'
+        'news',
+        'quality',
+        'planes',
+        'products',
+        'tools',
+        'equipment',
+        'shipping',
+        'storage',
+        'components',
+        'supplies',
+        'jacks',
+        'container',
+        'development',
+        'production',
+        'application'
     ]
 
     for name in names:

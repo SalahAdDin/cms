@@ -134,10 +134,18 @@ class InfoBlock(StructBlock):
     header = CharBlock(label=_('Header'))
     text = RichTextBlock(label=_('Text info'))
 
+    class Meta:
+        icon = "warning"
+        template = "blocks/info_block.html"
+
 
 class DocumentLinkButton(StructBlock):
     document = DocumentChooserBlock()
     button_text = CharBlock(label=_('Button text'))
+
+    class Meta:
+        icon = "doc-full"
+        template = "blocks/document_link_button.html"
 
 
 class StoryBlock(StreamBlock):

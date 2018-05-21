@@ -12,6 +12,7 @@ from wagtail.core.blocks import (
     StreamBlock,
     StructBlock
 )
+from wagtail.documents.blocks import DocumentChooserBlock
 from wagtail.embeds.blocks import EmbedBlock
 from wagtail.images.blocks import ImageChooserBlock
 
@@ -134,6 +135,11 @@ class InfoBlock(StructBlock):
     text = RichTextBlock(label=_('Text info'))
 
 
+class DocumentLinkButton(StructBlock):
+    document = DocumentChooserBlock()
+    button_text = CharBlock(label=_('Button text'))
+
+
 class StoryBlock(StreamBlock):
     header = HeadingBlock(classname="title")
     intro = RichTextBlock(icon="pilcrow", label=_('Intro'))
@@ -148,3 +154,4 @@ class StoryBlock(StreamBlock):
     photo_grid = PhotoGridBlock(label=_('Photo Grid'))
     table = TableBlock(label=_('Table'), table_options=new_table_options)
     info = CardsBlock(InfoBlock(label=_('Card info')))  # TODO: add label and icon
+    document_button = DocumentLinkButton(label=_("Document's link button"))

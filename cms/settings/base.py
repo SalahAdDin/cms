@@ -229,6 +229,29 @@ WAGTAILIMAGES_MAX_UPLOAD_SIZE = 5 * 1024 * 1024
 
 WAGTAILSITEMAPS_CACHE_TIMEOUT = 60 * 60 * 24
 
+WAGTAILADMIN_RICH_TEXT_EDITORS = {
+    'default': {
+        'WIDGET': 'wagtail.admin.rich_text.DraftailRichTextArea',
+        'OPTIONS': {
+            'features': [
+                'bold',
+                'italic',
+                'strikethrough',
+                'h2',
+                'h3',
+                'h4',
+                'ol',
+                'ul',
+                'hr',
+                'embed',
+                'link',
+                'document-link',
+                'image',
+            ],
+        }
+    },
+}
+
 # Google maps
 GEO_WIDGET_DEFAULT_LOCATION = {
     'lat': 39.776667,

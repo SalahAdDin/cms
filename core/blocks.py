@@ -113,6 +113,15 @@ class PhotoGridBlock(StructBlock):
         template = "blocks/photo_grid_block.html"
 
 
+class PullQuoteBlock(StructBlock):
+    attribution = CharBlock(label=_('Attribution'))
+    quote = RichTextBlock(label=_('Quote'), classname='quote title')
+
+    class Meta:
+        template = 'blocks/pull_quote.html'  # TODO: Review this for template and "blockquote" richtextfield implementation
+        icon = 'openquote'
+
+
 class StoryBlock(StreamBlock):
     header = HeadingBlock(classname="title")
     intro = RichTextBlock(icon="pilcrow", label=_('Intro'))
@@ -121,6 +130,7 @@ class StoryBlock(StreamBlock):
     aligned_video = EmbedVideoBlock(label=_('Aligned video'))
     wide_image = WideImage(label=_('Wide Image'))
     bust_out = BustOutBlock(label=_('Bust out'))
+    pull_quote = PullQuoteBlock(label=_('Pull Quote'))
     raw_html = RawHTMLBlock(label=_('Raw HTML'), icon="code")
     embed = EmbedBlock(icon="code", label=_('Embed'))
     address = GMapBlock(label=_('Address'))

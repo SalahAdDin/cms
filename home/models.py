@@ -15,6 +15,7 @@ from condensedinlinepanel.edit_handlers import CondensedInlinePanel
 from wagtail.images.edit_handlers import ImageChooserPanel
 
 from core.abstracts import (
+    BrochureItem,
     CarouselItem,
     RelatedLink
 )
@@ -32,6 +33,14 @@ class HomePageRelatedLink(Orderable, RelatedLink):
     page = ParentalKey(
         'home.HomePage',
         related_name='related_links',
+        on_delete=models.CASCADE,
+    )
+
+
+class HomePageBrochureItem(Orderable, BrochureItem):
+    page = ParentalKey(
+        'home.HomePage',
+        related_name='brochure_items',
         on_delete=models.CASCADE,
     )
 
@@ -81,6 +90,7 @@ class HomePageProduct(Orderable, RelatedLink):
 
 
 class HomePage(Page):
+    brochures_title = models.TextField(blank=True, verbose_name="Brochures section's title")
     clients_title = models.TextField(blank=True, verbose_name="Clients section's title")
     products_title = models.TextField(blank=True, verbose_name="Products section's title")
 
@@ -97,5 +107,7 @@ class HomePage(Page):
         CondensedInlinePanel('clients', label=_("Clients"), card_header_from_field="title"),
         FieldPanel('products_title'),
         CondensedInlinePanel('products', label=_('Products'), card_header_from_field="title"),
+        FieldPanel('brochures_title'),
+        CondensedInlinePanel('brochure_items', label=_('Brochures'), card_header_from_field="title"),
         CondensedInlinePanel('related_links', label=_('Related links'), card_header_from_field="title"),
     ]

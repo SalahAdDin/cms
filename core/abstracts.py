@@ -175,3 +175,27 @@ class RelatedLink(LinkFields):
 
     class Meta:
         abstract = True
+
+
+class BrochureItem(models.Model):
+    title = models.CharField(_('Title'), max_length=255, help_text=_("Document's title."), )
+    file = models.ForeignKey(
+        'wagtaildocs.Document',
+        null=True,
+        blank=True,
+        related_name='+',
+        verbose_name=_("Document's file"),
+        on_delete=models.SET_NULL,
+    )
+
+    @property
+    def link(self):
+        return self.file.url
+
+    panels = [
+        FieldPanel('title'),
+        DocumentChooserPanel('file')
+    ]
+
+    class Meta:
+        abstract = True

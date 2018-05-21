@@ -30,6 +30,7 @@ SITE_HEADER = _('Rotafilo Savunma Havacılık ve Enerji Teknolojileri San. ve Ti
 # Application definition
 
 PROJECT_APPS = [
+    'about',
     # 'blog',
     'core',
     'home',

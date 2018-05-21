@@ -34,7 +34,8 @@ def register_strikethrough_feature(features):
 
     control = {
         'type': type_,
-        'label': 'S̶',
+        'label': 'S',
+        # TODO
         # 'icon': 'icon icon-fa-strikethrough',
         # 'icon': ['M100 100 H 900 V 900 H 100 Z'],
         'description': ugettext('Strikethrough'),
@@ -143,6 +144,7 @@ def register_underline_feature(features):
     control = {
         'type': type_,
         'label': 'U',
+        # TODO
         # 'icon': 'icon icon-fa-underline',
         # 'icon': ['M100 100 H 900 V 900 H 100 Z'],
         'description': ugettext('Underline'),

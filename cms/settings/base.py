@@ -34,6 +34,7 @@ PROJECT_APPS = [
     'core',
     'home',
     # 'person',
+    'products',
     'search',
 ]
 

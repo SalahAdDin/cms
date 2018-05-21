@@ -131,12 +131,12 @@ class PhotoGridBlock(StructBlock):
 
 
 class PullQuoteBlock(StructBlock):
-    attribution = CharBlock(label=_('Attribution'))
     quote = RichTextBlock(label=_('Quote'), classname='quote title')
+    attribution = CharBlock(label=_('Attribution'))
 
     class Meta:
-        template = 'blocks/pull_quote.html'  # TODO: Review this for template and "blockquote" richtextfield implementation
         icon = 'openquote'
+        template = 'blocks/pull_quote.html'  # TODO: Review this for template and "blockquote" richtextfield implementation
 
 
 class InfoBlock(StructBlock):

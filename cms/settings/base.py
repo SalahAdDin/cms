@@ -236,7 +236,11 @@ WAGTAILADMIN_RICH_TEXT_EDITORS = {
             'features': [
                 'bold',
                 'italic',
+                'underline',
                 'strikethrough',
+                'mark',
+                'quotation',
+                'keyboard',
                 'h2',
                 'h3',
                 'h4',

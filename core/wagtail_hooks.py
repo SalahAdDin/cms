@@ -73,8 +73,6 @@ def register_quotation_feature(features):
     control = {
         'type': type_,
         'label': '❞',
-        # 'icon': 'icon icon-fa-strikethrough',
-        # 'icon': ['M100 100 H 900 V 900 H 100 Z'],
         'description': ugettext('Quotation'),
         # This isn’t even required – Draftail has predefined styles for QUOTATION.
         # 'style': {'textDecoration': 'line-through'},
@@ -220,9 +218,7 @@ def register_keyboard_feature(features):
 
     control = {
         'type': type_,
-        'label': 'K',
-        # 'icon': 'icon icon-fa-keyboard',
-        # 'icon': ['M100 100 H 900 V 900 H 100 Z'],
+        'label': '⌘',
         'description': ugettext('Keyboard'),
         # This isn’t even required – Draftail has predefined styles for KEYBOARD.
         # 'style': {'textDecoration': 'line-through'},

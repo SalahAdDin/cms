@@ -4,13 +4,14 @@ from django.utils.translation import ugettext_lazy as _
 from modelcluster.fields import ParentalKey
 from wagtail.admin.edit_handlers import (
     FieldPanel,
-    InlinePanel,
     MultiFieldPanel
 )
 from wagtail.core.fields import RichTextField
 from wagtail.core.models import Page, Orderable
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtailgeowidget.edit_handlers import GeoPanel
+
+from condensedinlinepanel.edit_handlers import CondensedInlinePanel
 
 from core.abstracts import RelatedLink
 
@@ -78,8 +79,8 @@ class AboutPage(Page):
         FieldPanel('heading', classname='full'),
         # FieldPanel('intro', classname='full'),
         FieldPanel('body', classname='full'),
-        InlinePanel('content_blocks', label=_('Content blocks')),
-        InlinePanel('related_link_buttons', label=_('Header buttons')),
-        InlinePanel('offices', label=_('Offices')),
+        CondensedInlinePanel('content_blocks', label=_('Content blocks')),
+        CondensedInlinePanel('related_link_buttons', label=_('Header buttons')),
+        CondensedInlinePanel('offices', label=_('Offices')),
         # FieldPanel('involvement_title'),
     ]

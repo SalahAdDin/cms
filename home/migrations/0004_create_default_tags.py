@@ -24,7 +24,8 @@ def create_tags(apps, schema_editor):
         'container',
         'development',
         'production',
-        'application'
+        'application',
+        'promotion'
     ]
 
     for name in names:

@@ -25,7 +25,8 @@ def create_collections(apps, schema_editor):
         'cabin interior',
         'brochure',
         'services',
-        'design'
+        'design',
+        'promotion'
     ]
 
     # Get collection's root
